@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv sh
+exec s6-setuidgid redis redis-server --port 6379 --bind 127.0.0.1 

@@ -1,0 +1,7 @@
+
+/var/log/authsvr true nobody 0600 0700
+/var/log/authwkr true nobody 0600 0700
+/var/log/syncsvr true nobody 0600 0700
+/var/log/syncwkr true nobody 0600 0700
+/var/log/apigw   true nobody 0600 0700
+/var/log/redis   true nobody 0600 0700
