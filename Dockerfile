@@ -36,7 +36,6 @@ RUN yarn install --pure-lockfile \
 RUN \
        mv /var/www/services/01-s6-init  /etc/cont-init.d/. \
     && mv /var/www/services/01-logs-dir /etc/fix-attrs.d/. \
-    && rm -Rf /var/www/services/hold \
     && mv /var/www/services/* /etc/services.d/. \
     && mv /var/www/log/* /var/log/. \
     && rm -R /var/www/services /var/www/log
