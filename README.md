@@ -2,6 +2,7 @@
 My remix of the standalone standardnotes  nodejs version running in a single container. 
 
 ## Work in Progress!
+Please deploy/test in a non-production environment, and ensure you have adequate database backups with tested restore procedures before attempting to deploy this to production!
 
 ### Ports Used
 - SYNCING-SERVER is on port 3000
