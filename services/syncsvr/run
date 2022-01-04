@@ -3,8 +3,6 @@
 with-contenv
 export PORT 3000
 export REDIS_EVENTS_CHANNEL events
-export DB_DATABASE db #change-me
-export DB_USERNAME std_notes_user
 export DB_MIGRATIONS_PATH /var/www/syncing-server-js/dist/migrations/*.js
 s6-sleep 2 s6-setuidgid nobody
 node /var/www/syncing-server-js/dist/bin/server.js 
