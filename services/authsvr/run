@@ -2,7 +2,7 @@
 with-contenv
 export PORT 3001
 export REDIS_EVENTS_CHANNEL auth
-export DB_DATABASE sn_js_db
+export DB_DATABASE db #change-me
 export DB_USERNAME std_notes_user
 export DB_MIGRATIONS_PATH /var/www/auth/dist/migrations/*.js
 s6-sleep 2 s6-setuidgid nobody
