@@ -1,7 +1,0 @@
-#!/bin/sh
-mkdir -p /var/log/authsvr 
-mkdir -p /var/log/authwkr
-mkdir -p /var/log/syncsvr 
-mkdir -p /var/log/syncwkr 
-mkdir -p /var/log/apigw
-mkdir -p /var/log/redis

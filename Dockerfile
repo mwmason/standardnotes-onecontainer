@@ -6,7 +6,8 @@ RUN apk add --update --no-cache \
     alpine-sdk \
     python3 \
     ca-certificates \
-    libc6-compat
+    libc6-compat \
+    xz
 
 #ADD REDIS and REDIS USER
 RUN  addgroup -S -g 1001 redis && adduser -S -G redis -u 999 redis
@@ -14,11 +15,10 @@ COPY --from=redis /usr/local/bin/redis-* /usr/bin/
 
 COPY --chown=nobody:nobody . /var/www/
 
-RUN \
-       mv /var/www/s6-overlay-amd64-installer /tmp \
-    && chmod +x /tmp/s6-overlay-amd64-installer \
-    && /tmp/s6-overlay-amd64-installer / \
-    && rm -f /tmp/s6-overlay-amd64-installer
+ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-overlay-noarch.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-overlay-x86_64.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 
 #1.15.0
 WORKDIR /var/www/auth
@@ -34,11 +34,12 @@ RUN yarn install --pure-lockfile \
     && yarn build
 
 RUN \
-       mv /var/www/services/01-s6-init  /etc/cont-init.d/. \
-    && mv /var/www/services/01-logs-dir /etc/fix-attrs.d/. \
-    && mv /var/www/services/* /etc/services.d/. \
+       mv /var/www/services/* /etc/s6-overlay/s6-rc.d/. \
+    && mv /etc/s6-overlay/s6-rc.d/contents/* /etc/s6-overlay/s6-rc.d/user/contents.d/. \
     && mv /var/www/log/* /var/log/. \
-    && rm -R /var/www/services /var/www/log
+    && chmod -R u+rwx /var/log/* \
+    && rm -R /var/www/services /var/www/log /etc/s6-overlay/s6-rc.d/contents
+
 
 ENTRYPOINT ["/init"]
 #CMD [ "" ]

@@ -1,7 +1,8 @@
-#!/usr/bin/execlineb -P
+#!/command/execlineb -P
 with-contenv
 export PORT 3001
 export REDIS_EVENTS_CHANNEL auth
 export DB_MIGRATIONS_PATH /var/www/auth/dist/migrations/*.js
-s6-sleep 2 s6-setuidgid nobody
+#s6-sleep 2 
+s6-setuidgid nobody
 node /var/www/auth/dist/bin/server.js 
