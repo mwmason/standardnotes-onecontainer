@@ -1,15 +1,17 @@
 # standardnotes-onecontainer
-My remix of the standalone standardnotes  nodejs version running in a single container. 
+My remix of the standalone standardnotes  nodejs version running in a single container.  Leverages [s6-overlay v3.](https://github.com/just-containers/s6-overlay)
 
 ## Work in Progress!
-Please deploy/test in a non-production environment, and ensure you have adequate database backups with tested restore procedures before attempting to deploy this to production!
+**Please deploy/test in a non-production environment, and ensure you have adequate database backups with tested restore procedures before attempting to deploy this to production!**
 
-Not yet tested/updated to s6-overlay release 3!
+### Overview
+Rather than run each of the standardnotes services in separate containers, we can deploy a process supervisor like s6-overlay which will init each service honoring their dependencies.  The deployment of the required MySQL database instance is not addressed in this project.
 
 ### Ports Used
+- REDIS 6379
 - SYNCING-SERVER is on port 3000
 - AUTH is on port 3001
-- API-GATEWAY is on port 3002
+- API-GATEWAY is on port 3002 
 
 ### Working Directory Setup
 1. Create a local working directory and git clone api-gateway, auth, and syncing-server-js
