@@ -19,16 +19,13 @@ ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-
 RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 
 ADD https://github.com/standardnotes/auth/archive/refs/tags/1.44.1.tar.gz /tmp
-RUN tar -xzf /tmp/auth-1.44.1.tar.gz \
-    && mv /tmp/auth-1.44.1 /var/www/auth
+RUN mv /tmp/auth-1.44.1 /var/www/auth
 
 ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.52.1.tar.gz /tmp
-RUN tar -xzf /tmp/syncing-server-js-1.52.1.tar.gz \
-    && mv /tmp/syncing-server-js-1.52.1 /var/www/syncing-server-js
+RUN mv /tmp/syncing-server-js-1.52.1 /var/www/syncing-server-js
 
 ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.37.0.tar.gz /tmp
-RUN tar -xzf /tmp/api-gateway-1.37.0.tar.gz \
-    && mv /tmp/api-gateway-1.37.0 /var/www/api-gateway
+RUN mv /tmp/api-gateway-1.37.0 /var/www/api-gateway
 
 WORKDIR /var/www/auth
 RUN yarn install --pure-lockfile \
