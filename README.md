@@ -51,17 +51,18 @@ Standardnotes services' healthcheck will be available on localhost:port/healthch
 ### Customize Environment variables
 The env.sample file is the consolidation of all the environment variables from each of the standardnotes services.  DB variables (host, databasename, user, password, etc.) should be modified here.  In addition, any other standardnotes customization should be set here.    
 
-Each standardnotes service ``run`` script imports the container environment variables using s6-overlay's ``with-contenv`` utility.  However, as required, these variables can be overriden for the service (e.g. ``PORT`` is set separately in each ``run``).  Feel free to add any required for your environment.
+Each standardnotes service ``run`` script imports the container environment variables using s6-overlay's ``with-contenv`` utility.  However, as required, these variables can be overriden for the service (e.g. ``PORT`` is set separately in each ``run``).  Feel free to add any required variables for your environment.
 
 ### Deploy your container
-When you build your container - s6-overlay will be started:
-- In turn, s6-overlay will start each service:
+When you run your container - s6-overlay will be started, which will s6-overlay will start each service:
    1. redis
    2. authsvr
    3. synsvr
    4. api-gateway  
-- The optional loggers will also be started their output can be found in /var/log/servicename (e.g. /var/log/authsvr).
-- Monitor stdout or review each service logger to verify the container has started successfully.   
+
+### Verify your deployment
+- The optional loggers will be started and their output can be found in /var/log/servicename (e.g. /var/log/authsvr).
+- Monitor stdout or review each service log to verify the container has started successfully.   
 - Further verify each service using its respective healtcheck (e.g. redis ping, //localhost:port/healthcheck) 
 
-Connect your app on the container exposed port for 3002 - and start taking notes!
+**Connect your app on the container exposed port for 3002 - and start taking notes!**
