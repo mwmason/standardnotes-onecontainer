@@ -21,7 +21,7 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 ADD https://github.com/standardnotes/auth/archive/refs/tags/1.44.1.tar.gz /var/www/auth.tar.gz
 RUN tar -xzf /var/www/auth.tar.gz 
 
-ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.52.1.tar.gz /var/www/syncing-server.js.tar.gz
+ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.52.1.tar.gz /var/www/syncing-server-js.tar.gz
 RUN tar -xzf /var/www/syncing-server-js.tar.gz 
 
 ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.37.0.tar.gz /var/www/api-gateway.tar.gz
