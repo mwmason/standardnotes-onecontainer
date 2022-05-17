@@ -22,10 +22,10 @@ ADD https://github.com/standardnotes/auth/archive/refs/tags/1.44.1.tar.gz /var/w
 RUN tar -xzf /var/www/auth.tar.gz 
 
 ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.52.1.tar.gz /var/www/syncing-server.js.tar.gz
-RUN tar -xzf /var/www/syncing-server-js-1.52.1.tar.gz 
+RUN tar -xzf /var/www/syncing-server-js.tar.gz 
 
 ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.37.0.tar.gz /var/www/api-gateway.tar.gz
-RUN tar -xzf /var/www/api-gateway-1.37.0.tar.gz 
+RUN tar -xzf /var/www/api-gateway.tar.gz 
 
 WORKDIR /var/www/auth
 RUN yarn install --pure-lockfile \
@@ -47,7 +47,7 @@ RUN \
     && find /etc/s6-overlay/s6-rc.d/. -name check | xargs chmod u+x \
     && mv /etc/s6-overlay/s6-rc.d/contents/* /etc/s6-overlay/s6-rc.d/user/contents.d/. \
     && chmod -R u+rwx /var/log/* \
-    && rm -R /tmp/*.xz /tmp/*.gz /etc/s6-overlay/s6-rc.d/contents
+    && rm -R /tmp/*.xz /var/www/*.gz /etc/s6-overlay/s6-rc.d/contents
 
 
 ENTRYPOINT ["/init"]
