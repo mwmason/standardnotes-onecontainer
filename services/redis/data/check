@@ -1,0 +1,7 @@
+#!/bin/sh
+if [ "$( redis-cli -h localhost -p 6379 ping  )" = "PONG"  ]
+    then 
+        exit
+    else
+        exit 1
+fi 

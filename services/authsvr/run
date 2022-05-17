@@ -3,6 +3,4 @@ with-contenv
 export PORT 3001
 export REDIS_EVENTS_CHANNEL auth
 export DB_MIGRATIONS_PATH /var/www/auth/dist/migrations/*.js
-#s6-sleep 2 
-s6-setuidgid nobody
-node /var/www/auth/dist/bin/server.js 
+s6-notifyoncheck -d -s 5000 -w 2000 s6-setuidgid nobody node /var/www/auth/dist/bin/server.js

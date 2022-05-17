@@ -2,6 +2,4 @@
 with-contenv
 export PORT 3002
 export REDIS_EVENTS_CHANNEL auth-events
-#s6-sleep 15 
-s6-setuidgid nobody
-node /var/www/api-gateway/dist/bin/server.js > /var/log/apigw/app.log 2>&1
+s6-setuidgid nobody node /var/www/api-gateway/dist/bin/server.js > /var/log/apigw/app.log 2>&1
