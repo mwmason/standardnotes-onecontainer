@@ -18,17 +18,14 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
 ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-overlay-x86_64.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 
-ADD https://github.com/standardnotes/auth/archive/refs/tags/1.44.1.tar.gz /var/www/
-RUN tar -xzf /var/www/auth-1.44.1.tar.gz \
-    && mv /var/www/auth-1.44.1 /var/www/auth
+ADD https://github.com/standardnotes/auth/archive/refs/tags/1.44.1.tar.gz /var/www/auth.tar.gz
+RUN tar -xzf /var/www/auth.tar.gz 
 
-ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.52.1.tar.gz /var/www/
-RUN tar -xzf /var/www/syncing-server-js-1.52.1.tar.gz \
-    && mv /var/www/syncing-server-js-1.52.1 /var/www/syncing-server-js
+ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.52.1.tar.gz /var/www/syncing-server.js.tar.gz
+RUN tar -xzf /var/www/syncing-server-js-1.52.1.tar.gz 
 
-ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.37.0.tar.gz /var/www/
-RUN tar -xzf /var/www/api-gateway-1.37.0.tar.gz \
-    && mv /var/www/api-gateway-1.37.0 /var/www/api-gateway
+ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.37.0.tar.gz /var/www/api-gateway.tar.gz
+RUN tar -xzf /var/www/api-gateway-1.37.0.tar.gz 
 
 WORKDIR /var/www/auth
 RUN yarn install --pure-lockfile \
