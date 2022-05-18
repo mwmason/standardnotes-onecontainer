@@ -23,11 +23,11 @@ RUN tar -C /var/www -xzf /var/www/auth.tar.gz \
  && mv /var/www/auth-1.44.1 /var/www/auth
 
 ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.52.1.tar.gz /var/www/syncing-server-js.tar.gz
-RUN tar -xzf /var/www/syncing-server-js.tar.gz \
+RUN tar -C /var/www -xzf /var/www/syncing-server-js.tar.gz \
  && mv /var/www/syncing-server-js-1.52.1 /var/www/syncing-server-js
 
 ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.37.0.tar.gz /var/www/api-gateway.tar.gz
-RUN tar -xzf /var/www/api-gateway.tar.gz \
+RUN tar -C /var/www -xzf /var/www/api-gateway.tar.gz \
  && mv /var/www/api-gateway-1.37.0 /var/www/api-gateway
 
 WORKDIR /var/www/auth
