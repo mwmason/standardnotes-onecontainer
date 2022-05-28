@@ -38,9 +38,9 @@ Standardnotes services' healthcheck will be available on localhost:port/healthch
    d. services/syncsvr-log  
 5. Each service directory will have the required files ``run`` and ``type``, and for dependency definition, the optional files ``dependencies``, ``notification-fd`` and ``data/check``.   
    - If a service is a dependency for another service, the prerequisite service will also have a ``data/check`` directory/file where ``check`` will contain the script necessary to inform s6-overlay that the owning service has successfully started and is active.  For example, redis is a prerequisite for authsvr and syncsvr; its ``data/check`` file contains a redis PING and verifies a PONG is received, returning the result of this check to s6-overlay.  
-   - Both authsvr and syncsvr have an optional ``dependencies`` file that contain the service name ``redis``.  s6-overlay will ensure redis has successfully started and confirmed that it is active before starting its dependent services, authsvr and syncsvr.
+   - Both authsvr and syncsvr have an optional ``dependencies`` file that contains the service name ``redis``.  s6-overlay will ensure redis has successfully started and confirmed that it is active before starting its dependent services, authsvr and syncsvr.
    - apigw has a defined dependency on authsvr
-7. The services directory also contains a ``contents`` directory. 
+7. The services directory also contains a ``contents`` directory:   
    - ``contents`` has an empty file with a matching filename for each service (defined by a service directory) to be managed by s6-overlay.  
    - A service file exists for the 4 services and 4 loggers.  Only services listed in ``contents`` will be initialized by s6-overlay; feel free to remove the logger files if you'd rather everything logged to stdout.
 9. Optional logger services have also been defined.  In addition to the required files ``run`` and ``type``, logger coordination requires either the existence of either the file ``producer-for`` or ``consumer-for``:
@@ -54,7 +54,7 @@ The env.sample file is the consolidation of all the environment variables from e
 Each standardnotes service ``run`` script imports the container environment variables using s6-overlay's ``with-contenv`` utility.  However, as required, these variables can be overriden for the service (e.g. ``PORT`` is set separately in each ``run``).  Feel free to add any required variables for your environment.
 
 ### Deploy your container
-When you run your container - s6-overlay will be started, which will s6-overlay will start each service:
+When you run your container - s6-overlay will be started, which will then initialize each service:
    1. redis
    2. authsvr
    3. synsvr
