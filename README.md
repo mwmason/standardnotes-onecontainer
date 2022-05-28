@@ -65,4 +65,4 @@ When you run your container - s6-overlay will be started, which will then initia
 - Monitor stdout or review each service log to verify the container has started successfully.   
 - Further verify each service using its respective healtcheck (e.g. redis ping, //localhost:port/healthcheck) 
 
-**Connect your app on the container exposed port for 3002 - and start taking notes!**
+**Connect your app on the container exposed port 3002 - and start taking notes!**
