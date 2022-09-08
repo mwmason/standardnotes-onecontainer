@@ -13,22 +13,22 @@ RUN apk add --update --no-cache \
 RUN  addgroup -S -g 1001 redis && adduser -S -G redis -u 999 redis
 COPY --from=redis /usr/local/bin/redis-* /usr/bin/
 
-ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-overlay-noarch.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.2.1/s6-overlay-noarch.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
-ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.0.1/s6-overlay-x86_64.tar.xz /tmp
+ADD https://github.com/just-containers/s6-overlay/releases/download/v3.1.2.1/s6-overlay-x86_64.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 
-ADD https://github.com/standardnotes/auth/archive/refs/tags/1.44.1.tar.gz /var/www/auth.tar.gz
+ADD https://github.com/standardnotes/auth/archive/refs/tags/1.46.4.tar.gz /var/www/auth.tar.gz
 RUN tar -C /var/www -xzf /var/www/auth.tar.gz \
- && mv /var/www/auth-1.44.1 /var/www/auth
+ && mv /var/www/auth-1.46.4 /var/www/auth
 
-ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.52.1.tar.gz /var/www/syncing-server-js.tar.gz
+ADD https://github.com/standardnotes/syncing-server-js/archive/refs/tags/1.55.0.tar.gz /var/www/syncing-server-js.tar.gz
 RUN tar -C /var/www -xzf /var/www/syncing-server-js.tar.gz \
- && mv /var/www/syncing-server-js-1.52.1 /var/www/syncing-server-js
+ && mv /var/www/syncing-server-js-1.55.0 /var/www/syncing-server-js
 
-ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.37.0.tar.gz /var/www/api-gateway.tar.gz
+ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.40.1.tar.gz /var/www/api-gateway.tar.gz
 RUN tar -C /var/www -xzf /var/www/api-gateway.tar.gz \
- && mv /var/www/api-gateway-1.37.0 /var/www/api-gateway
+ && mv /var/www/api-gateway-1.40.0 /var/www/api-gateway
 
 WORKDIR /var/www/auth
 RUN yarn install --pure-lockfile \
