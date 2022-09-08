@@ -28,7 +28,7 @@ RUN tar -C /var/www -xzf /var/www/syncing-server-js.tar.gz \
 
 ADD https://github.com/standardnotes/api-gateway/archive/refs/tags/1.40.1.tar.gz /var/www/api-gateway.tar.gz
 RUN tar -C /var/www -xzf /var/www/api-gateway.tar.gz \
- && mv /var/www/api-gateway-1.40.0 /var/www/api-gateway
+ && mv /var/www/api-gateway-1.40.1 /var/www/api-gateway
 
 WORKDIR /var/www/auth
 RUN yarn install --pure-lockfile \
